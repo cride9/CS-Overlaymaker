@@ -1,12 +1,13 @@
 # CS-CustomOverlay
  
-This C# application will be developed in the near future.
-The sofware will be able to attach to any windowed process and the user can add custom form elements,
+The software will be able to attach to any windowed process and the user will be able to add custom form elements,
 
 Example usage scenario:
-Stream overlay -> Logo in the corner or a simple text
+Stream overlay -> 
+    Logo in the corner or a simple text
+    DVD screensaver to an application
+    Key overlay/visualizer
 
-## Table of Contents
 - [Features](#features)
 - [Compile](#compile)
 - [Plans](#plans)
