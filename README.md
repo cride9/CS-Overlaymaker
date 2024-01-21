@@ -9,6 +9,7 @@ Stream overlay -> Logo in the corner or a simple text
 ## Table of Contents
 - [Features](#features)
 - [Compile](#compile)
+- [Plans](#plans)
 
 ## Features
 - Main window that will handle the overlay controls and attachment
@@ -20,3 +21,12 @@ Stream overlay -> Logo in the corner or a simple text
 2. Open Overlay.sln
 3. Change from Any CPU to x64
 4. Build the project
+
+## Plans
+- Fully customizable controls
+- Programmable controls in runtime
+- Integrating sub/like counter ( no idea how yet.. )
+- Notification pop-up
+- Further optimizations
+- Draw functions ( rectangle, pen, brush, etc.. )
+- Config saving with all the controls that was opened
