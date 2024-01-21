@@ -1,16 +1,16 @@
 # CS-CustomOverlay
  
-The software will be able to attach to any windowed process and the user will be able to add custom form elements,
-
-Example usage scenario:
-Stream overlay -> 
-    Logo in the corner or a simple text
-    DVD screensaver to an application
-    Key overlay/visualizer
+This overlay program can easily attach to any windowed process and make a transparent overlay on top of the chosen application. You can hide and open the main window by pressing the INSERT button.
 
 - [Features](#features)
 - [Compile](#compile)
 - [Plans](#plans)
+- [Example](#example)
+
+# Example
+- Logo in the corner or a simple text
+- DVD screensaver to an application
+- Key overlay/visualizer
 
 ## Features
 - Main window that will handle the overlay controls and attachment
