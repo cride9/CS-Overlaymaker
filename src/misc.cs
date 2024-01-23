@@ -5,8 +5,85 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Overlay.src {
+
+    public static class ControlProperties {
+
+        public static overlayWindow window = null;
+        private static (int x, int y) location = new( 20, 20 );
+        public class ControlText {
+
+            public string text { get; set; } = string.Empty;
+            public int x { get; set; } = 0;
+            public int y { get; set; } = 0;
+
+            public List<Control[ ]> controlList { get; set; } = new( );
+
+            public ControlText( string text, int x, int y  ) {
+
+                this.text = text;
+                this.x = x;
+                this.y = y;
+
+                var textBox = new TextBox();
+                textBox.TextChanged += UpdateText;
+
+                var trackBarX = new TrackBar( );
+                trackBarX.ValueChanged += UpdateX;
+
+                var trackBarY = new TrackBar( );
+                trackBarY.ValueChanged += UpdateY;
+
+                controlList.Add( [ textBox, trackBarX, trackBarY ] );
+            }
+
+            public object DrawControls( Control.ControlCollection collection ) {
+
+                controlList.ForEach( control => {
+
+                    foreach ( var item in control ) {
+
+                        item.Location = new Point( location.x, location.y );
+                        collection.Add( item );
+                        location.x += item.Width + 5;
+                    }
+                    
+                    location = new( 20, location.y + 40 );
+                } );
+
+                return this;
+            }
+
+            public void UpdateBounds(int x, int y ) {
+
+                controlList.ForEach( it => {
+
+                    ( ( TrackBar )it[ 1 ] ).Maximum = x;
+                    ( ( TrackBar )it[ 2 ] ).Maximum = y;
+
+                } );
+            }
+
+            private void UpdateText( object sender, EventArgs e ) {
+
+                window.Refresh( );
+                text = ( ( TextBox )sender ).Text;
+            }
+
+            private void UpdateX( object sender, EventArgs e ) {
+
+                window.Refresh( );
+                x = ( ( TrackBar )sender ).Value;
+            }
+            private void UpdateY( object sender, EventArgs e ) {
+
+                window.Refresh( );
+                y = ( ( TrackBar )sender ).Value;
+            }
+        }
+    }
     public static class Misc {
 
         public static void GetProcess( string windowTitle, out Process proc ) =>

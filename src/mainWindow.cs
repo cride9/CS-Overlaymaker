@@ -2,18 +2,19 @@ using Overlay.src;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using static Overlay.CONTROLS;
+using static Overlay.src.ControlProperties;
 
 namespace Overlay {
     public partial class mainWindow : Form {
 
-        WindowProperties properties = new( );
+        static WindowProperties properties = new( );
 
         public mainWindow( ) {
             InitializeComponent( );
         }
 
         private void WindowInitialize( object sender, EventArgs e ) {
-
 
         }
 
@@ -39,7 +40,7 @@ namespace Overlay {
             try {
 
                 if ( properties.runningWindow != null )
-                    properties.runningWindow.Close();
+                    properties.runningWindow.Close( );
 
                 properties.runningWindow = null!;
                 string userTextFormated = userInput.Text;
@@ -64,6 +65,7 @@ namespace Overlay {
 
                 properties.runningWindow = new( process.MainWindowHandle );
                 properties.runningWindow.Show( );
+                window = properties.runningWindow;
             }
             catch ( Exception ex ) {
 
@@ -71,5 +73,39 @@ namespace Overlay {
             }
 
         }
+
+        private void AddControl( object sender, EventArgs e ) {
+
+            try {
+
+                if ( controlPick.SelectedIndex < 0 )
+                    throw new Exception( "Please select a control!" );
+
+                switch ( ( CONTROLS )controlPick.SelectedIndex ) {
+                    case CONTROLS.TEXT:
+                        var Control = new ControlText( "", 0, 0 ).DrawControls( controlBox.Controls );
+                        overlayWindow.controls.Add( new KeyValuePair<CONTROLS, object>( CONTROLS.TEXT, Control ) );
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            catch ( Exception ex ) {
+
+                MessageBox.Show( $"{ex.Message}" );
+            }
+        }
+
+        private void ForceUpdateOverlay( object sender, EventArgs e ) {
+
+            if ( properties.runningWindow is not null )
+                properties.runningWindow.Refresh();
+        }
+    }
+
+    public enum CONTROLS : int {
+
+        TEXT = 0,
     }
 }

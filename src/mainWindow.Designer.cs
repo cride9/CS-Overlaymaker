@@ -32,7 +32,8 @@
             vScroll = new VScrollBar( );
             controlBox = new GroupBox( );
             button1 = new Button( );
-            comboBox1 = new ComboBox( );
+            controlPick = new ComboBox( );
+            updateOverlay = new Button( );
             controlBox.SuspendLayout( );
             SuspendLayout( );
             // 
@@ -91,7 +92,7 @@
             // 
             // vScroll
             // 
-            vScroll.Location = new Point( 341, 8 );
+            vScroll.Location = new Point( 354, 8 );
             vScroll.Name = "vScroll";
             vScroll.Size = new Size( 17, 303 );
             vScroll.TabIndex = 4;
@@ -102,7 +103,7 @@
             controlBox.ForeColor = Color.FromArgb(     212,     212,     212 );
             controlBox.Location = new Point( 12, 98 );
             controlBox.Name = "controlBox";
-            controlBox.Size = new Size( 358, 313 );
+            controlBox.Size = new Size( 372, 313 );
             controlBox.TabIndex = 5;
             controlBox.TabStop = false;
             controlBox.Text = "Controls";
@@ -117,19 +118,32 @@
             button1.TabIndex = 6;
             button1.Text = "Add control";
             button1.UseVisualStyleBackColor = false;
+            button1.Click +=  AddControl ;
             // 
-            // comboBox1
+            // controlPick
             // 
-            comboBox1.BackColor = Color.FromArgb(     25,     25,     25 );
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.ForeColor = Color.FromArgb(     212,     212,     212 );
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange( new object[ ] { "Label", "PictureBox", "TextBox", "Button", "CheckBox", "Panel", "GroupBox" } );
-            comboBox1.Location = new Point( 148, 70 );
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size( 121, 22 );
-            comboBox1.TabIndex = 7;
+            controlPick.BackColor = Color.FromArgb(     25,     25,     25 );
+            controlPick.DropDownStyle = ComboBoxStyle.DropDownList;
+            controlPick.FlatStyle = FlatStyle.Flat;
+            controlPick.ForeColor = Color.FromArgb(     212,     212,     212 );
+            controlPick.FormattingEnabled = true;
+            controlPick.Items.AddRange( new object[ ] { "Text" } );
+            controlPick.Location = new Point( 148, 70 );
+            controlPick.Name = "controlPick";
+            controlPick.Size = new Size( 121, 22 );
+            controlPick.TabIndex = 7;
+            // 
+            // updateOverlay
+            // 
+            updateOverlay.BackColor = Color.FromArgb(     25,     25,     25 );
+            updateOverlay.FlatStyle = FlatStyle.Flat;
+            updateOverlay.Location = new Point( 275, 70 );
+            updateOverlay.Name = "updateOverlay";
+            updateOverlay.Size = new Size( 108, 23 );
+            updateOverlay.TabIndex = 8;
+            updateOverlay.Text = "Update";
+            updateOverlay.UseVisualStyleBackColor = false;
+            updateOverlay.Click +=  ForceUpdateOverlay ;
             // 
             // mainWindow
             // 
@@ -137,7 +151,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(     25,     25,     25 );
             ClientSize = new Size( 408, 420 );
-            Controls.Add( comboBox1 );
+            Controls.Add( updateOverlay );
+            Controls.Add( controlPick );
             Controls.Add( button1 );
             Controls.Add( controlBox );
             Controls.Add( overlayButton );
@@ -167,6 +182,7 @@
         private VScrollBar vScroll;
         private GroupBox controlBox;
         private Button button1;
-        private ComboBox comboBox1;
+        private ComboBox controlPick;
+        private Button updateOverlay;
     }
 }
